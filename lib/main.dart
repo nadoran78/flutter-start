@@ -1,66 +1,48 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    print('createState');
-    return _MyApp();
-  }
-}
-
-class _MyApp extends State<MyApp> {
-  var switchValue = false;
-  String test = 'hello';
-  Color _color = Colors.blue;
-
-  @override
-  void initState() {
-    super.initState();
-    print('initState');
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print('didChangeDependencies');
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('build');
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Material Flutter App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+          primarySwatch: Colors.blue),
+      home: MaterialFlutterApp(),
+    );
+  }
+}
+
+class MaterialFlutterApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MaterialFlutterApp();
+  }
+}
+
+class _MaterialFlutterApp extends State<MaterialFlutterApp> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Material Design App'),
       ),
-      darkTheme: ThemeData.light(),
-      home: Scaffold(
-        body: Center(
-          child: ElevatedButton(
-            child: Text('$test'),
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(_color)
-            ),
-            onPressed: () {
-              if (_color == Colors.blue) {
-                setState(() {
-                  test = 'flutter';
-                  _color = Colors.amber;
-                });
-              } else {
-                setState(() {
-                  test = 'hello';
-                  _color = Colors.blue;
-                });
-              }
-            },
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
+      body: Container(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Icon(Icons.android),
+              Text('android')
+            ],
+            mainAxisAlignment: MainAxisAlignment.center,
           ),
         ),
+
       ),
     );
   }
